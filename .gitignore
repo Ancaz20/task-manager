@@ -1,0 +1,21 @@
+# Backend
+backend/target/
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+*.class
+*.jar
+*.war
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# Scripts
+scripts/node_modules/
+
+# General
+.DS_Store
+*.log
+.env

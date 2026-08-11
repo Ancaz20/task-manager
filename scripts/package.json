@@ -1,0 +1,13 @@
+{
+  "name": "task-manager-screenshots",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "screenshots": "node take-screenshots.js",
+    "screenshots:puppeteer": "node take-screenshots-puppeteer.js"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.45.0",
+    "playwright": "^1.45.0"
+  }
+}
