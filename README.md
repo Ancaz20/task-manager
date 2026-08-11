@@ -1,6 +1,6 @@
 # 📝 Task Management App
 
-![CI/CD](https://github.com/Ancaz20in/taskmanager-backend/actions/workflows/ci-cd.yml/badge.svg)
+![CI/CD](https://github.com/Ancaz20/task-manager/actions/workflows/ci-cd.yml/badge.svg)
 ![Java](https://img.shields.io/badge/Java-21-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3-green)
 ![React](https://img.shields.io/badge/React-18-61dafb)
