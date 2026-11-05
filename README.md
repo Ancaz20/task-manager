@@ -11,7 +11,7 @@ A full-stack task management application built as a personal software engineerin
 
 ## Project status
 
-The repository contains a Render Blueprint for a free Spring Boot API and a free React static site. The API uses an external Neon PostgreSQL database. The Render resources have been started, but the public deployment is **not yet confirmed live** because the Neon connection variables still need to be set in Render. No database credentials belong in this repository.
+The repository contains a Render Blueprint for a free Spring Boot API and a free React static site. The API uses an external Neon PostgreSQL database. The API service has been created, but the complete deployment is **not live**: the Neon connection variables still need to be set in Render, and the static frontend has not yet been provisioned. No database credentials belong in this repository.
 
 ## What it does
 
