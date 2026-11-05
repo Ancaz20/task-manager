@@ -1,138 +1,119 @@
-# 📝 Task Management App
+# Task Manager
+
+A full-stack task management application built as a personal software engineering project.
 
 ![CI/CD](https://github.com/Ancaz20/task-manager/actions/workflows/ci-cd.yml/badge.svg)
 ![Java](https://img.shields.io/badge/Java-21-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3-green)
 ![React](https://img.shields.io/badge/React-18-61dafb)
 
-> Full stack task management app with JWT authentication, built as a portfolio project
-> to demonstrate end-to-end development skills.
+![Task Manager dashboard](docs/screenshot-dashboard.png)
 
-![Dashboard Screenshot](docs/screenshot-dashboard.png)
+## Project status
 
-## 🎯 Why I Built This
+The repository contains a Render Blueprint for a free Spring Boot API and a free React static site. The API uses an external Neon PostgreSQL database. The Render resources have been started, but the public deployment is **not yet confirmed live** because the Neon connection variables still need to be set in Render. No database credentials belong in this repository.
 
-Transitioning from hospitality to software engineering, I wanted to build something
-that solves a real problem I understand: **managing daily tasks in a demanding environment**.
-This app applies the same organizational principles I used as Sous Chef — prioritization,
-status tracking, deadlines — translated into software.
+## What it does
 
-## 🚀 Live Demo
-- 🌐 Frontend: https://taskmanager-frontend.vercel.app
-- 📚 API Docs: https://taskmanager-api.onrender.com/swagger-ui.html
+- Registers and authenticates users with Spring Security and JWT.
+- Creates, lists, updates and deletes tasks through a REST API.
+- Filters tasks by status and priority.
+- Serves API documentation through Swagger UI.
+- Provides a responsive React interface.
 
-## 🏗️ Architecture
+## Technology
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   React 18  │────▶│  Axios +    │────▶│Spring Boot  │────▶│ PostgreSQL  │
-│  (Vercel)   │◀────│   JWT       │◀────│  (Render)   │◀────│  (Render)   │
-└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
-                                                │
-                                         ┌──────┴──────┐
-                                         │   JUnit 5   │
-                                         │   Mockito   │
-                                         └─────────────┘
-```
+- **Backend:** Java 21, Spring Boot 3.3, Spring Security, Spring Data JPA / Hibernate, PostgreSQL, JWT.
+- **Frontend:** React 18, JavaScript, Vite, Tailwind CSS, Axios.
+- **Testing:** JUnit 5, Mockito, H2, MockMvc.
+- **Tools and deployment:** Maven, GitHub Actions, Docker, Docker Compose, Render, Neon PostgreSQL.
 
-**Layers:** Controller (HTTP) → Service (business logic) → Repository (data access)
+## Architecture
 
-## 🛠️ Tech Stack
-- **Backend:** Java 21, Spring Boot 3.3, Spring Security, JWT (JJWT 0.12), PostgreSQL
-- **Frontend:** React 18, Vite, Tailwind CSS, Axios
-- **DevOps:** Docker, GitHub Actions, Render, Vercel
-- **Testing:** JUnit 5, Mockito, H2 (integration)
+The backend separates HTTP controllers, business logic services and database repositories. The React single-page application calls the REST API through Axios and sends its JWT with authenticated requests.
 
-## 📸 Features
-- User registration and login with JWT
-- Create, read, update, delete tasks
-- Filter tasks by status and priority
-- Responsive design
-- Full API documentation with Swagger
+~~~text
+React + Vite
+    |
+    | HTTPS / JWT
+    v
+Spring Boot REST API
+    |
+    v
+Spring Data JPA
+    |
+    v
+Neon PostgreSQL
+~~~
 
-## 💡 Key Technical Decisions
+## Links
 
-| Decision | Rationale |
-|----------|-----------|
-| **Spring Boot over Flask** | Stronger typing and enterprise patterns for a portfolio piece |
-| **JWT over Session Cookies** | Stateless auth fits SPA architecture and horizontal scaling |
-| **Layered Architecture** | Clear separation: Controller handles HTTP, Service owns business logic, Repository accesses data |
-| **Records for DTOs** | Java 21 records eliminate boilerplate while keeping immutability |
+- **Source code:** [github.com/Ancaz20/task-manager](https://github.com/Ancaz20/task-manager)
+- **Render API service:** [task-manager-api-2ttc.onrender.com](https://task-manager-api-2ttc.onrender.com)
+- **Swagger UI:** [API documentation](https://task-manager-api-2ttc.onrender.com/swagger-ui.html)
+- **Swiss Tech Radar:** [Live application](https://swiss-tech-radar.onrender.com/?lang=es&sort=date) · [Source code](https://github.com/Ancaz20/Swiss-Tech-Radar-Personal-Project)
+- **Mi Despensa:** [Live application](https://mi-despensa-99yb.onrender.com/) · [Source in the Swiss Tech Radar repository](https://github.com/Ancaz20/Swiss-Tech-Radar-Personal-Project/tree/feature/mi-despensa-v2/mi-despensa)
 
-## 🧪 Testing Strategy
+> The Task Manager Render links are deployment targets while the database connection is being completed; the Swiss Tech Radar and Mi Despensa links are separate portfolio projects.
 
-- **Unit Tests:** Mockito for service layer — mocked dependencies, fast feedback
-- **Controller Tests:** `@WebMvcTest` + MockMvc to validate HTTP layer in isolation
-- **Integration Tests:** H2 in-memory DB for full Spring context load
-- **CI/CD:** GitHub Actions runs tests on every push to `main` and `develop`
+## Run locally
 
-## 🛣️ Roadmap
+### Requirements
 
-- [ ] Task categories and tags
-- [ ] Email notifications for due dates
-- [ ] Team collaboration (shared workspaces)
-- [ ] Mobile app with React Native
-
-## Run Locally
-
-### Prerequisites
 - Java 21
 - Node.js 20+
-- Docker (optional)
+- Docker and Docker Compose for a local PostgreSQL container
 
 ### Backend
-```bash
+
+From the repository root:
+
+~~~bash
 cd backend
-docker-compose up -d   # Starts PostgreSQL
-./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
-```
-API will be available at http://localhost:8080  
-Swagger UI at http://localhost:8080/swagger-ui.html
+docker compose up -d
+./mvnw spring-boot:run
+~~~
+
+The API runs at [http://localhost:8080](http://localhost:8080). Swagger UI is at [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
 
 ### Frontend
-```bash
+
+In another terminal:
+
+~~~bash
 cd frontend
 npm install
 npm run dev
-```
-App will be available at http://localhost:5173
+~~~
 
-## Run Tests
-```bash
+Vite runs the frontend at [http://localhost:5173](http://localhost:5173).
+
+## Tests
+
+Run the backend tests with:
+
+~~~bash
 cd backend
 ./mvnw clean test
-```
+~~~
 
-## Docker
-```bash
-cd backend
-docker-compose up --build
-```
+The GitHub Actions workflow runs the project's checks on pushes and pull requests.
 
-## Deployment
-- **Backend:** Connect GitHub repo to Render (Docker deployment)
-- **Frontend:** Connect to Vercel (set `VITE_API_URL` environment variable)
+## Deployment configuration
 
-## API Endpoints
+The Render Blueprint describes a free Docker web service for the API and a free static site for the frontend. The static build reads VITE_API_URL from the API service's Render hostname.
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/auth/register | Register new user |
-| POST | /api/auth/login | Login and get JWT |
-| GET | /api/tasks | List tasks (with filters) |
-| POST | /api/tasks | Create task |
-| PUT | /api/tasks/{id} | Update task |
-| DELETE | /api/tasks/{id} | Delete task |
+Set these API variables in Render:
 
-## Environment Variables
+- SPRING_DATASOURCE_URL: JDBC URL for the Neon PostgreSQL database, with TLS enabled.
+- DB_USER: Neon database role.
+- DB_PASSWORD: Neon database password (secret; store only in Render).
+- JWT_SECRET: generated by Render through the Blueprint.
 
-### Backend
-- `SPRING_DATASOURCE_URL`
-- `SPRING_DATASOURCE_USERNAME`
-- `SPRING_DATASOURCE_PASSWORD`
-- `JWT_SECRET`
+Set VITE_API_URL for the frontend to the API's external hostname. The frontend client normalizes a hostname, origin or /api URL.
 
-### Frontend
-- `VITE_API_URL`
+The free Render API may sleep when idle, and the free Neon database has usage limits. Review provider limits before relying on either service for persistent production use.
 
-Built by Antonio Cazorla
+---
+
+Built by Antonio Cazorla González.
