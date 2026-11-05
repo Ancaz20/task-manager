@@ -12,26 +12,12 @@ projects:
             plan: free
             healthCheckPath: /v3/api-docs
             envVars:
-              - key: DB_HOST
-                fromDatabase:
-                  name: task-manager-db
-                  property: host
-              - key: DB_PORT
-                fromDatabase:
-                  name: task-manager-db
-                  property: port
-              - key: DB_NAME
-                fromDatabase:
-                  name: task-manager-db
-                  property: database
+              - key: SPRING_DATASOURCE_URL
+                sync: false
               - key: DB_USER
-                fromDatabase:
-                  name: task-manager-db
-                  property: user
+                sync: false
               - key: DB_PASSWORD
-                fromDatabase:
-                  name: task-manager-db
-                  property: password
+                sync: false
               - key: JWT_SECRET
                 generateValue: true
 
@@ -50,11 +36,3 @@ projects:
                   type: web
                   name: task-manager-api
                   envVarKey: RENDER_EXTERNAL_HOSTNAME
-
-        databases:
-          - name: task-manager-db
-            databaseName: taskmanager
-            user: taskmanager
-            plan: free
-            region: frankfurt
-            postgresMajorVersion: "17"
